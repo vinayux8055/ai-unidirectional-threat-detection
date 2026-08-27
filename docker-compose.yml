@@ -1,0 +1,41 @@
+services:
+  api:
+    build: .
+    command: ["uvicorn", "threatguard.api:app", "--host", "0.0.0.0", "--port", "8000"]
+    environment:
+      APP_SECRET: ${APP_SECRET:-development-only-change-me}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@threatguard.local}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-ChangeMe123!}
+    volumes:
+      - threatguard_data:/app/data
+      - threatguard_models:/app/models
+      - threatguard_reports:/app/reports
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  dashboard:
+    build: .
+    command: ["streamlit", "run", "dashboard/app.py", "--server.address=0.0.0.0", "--server.port=8501"]
+    environment:
+      APP_SECRET: ${APP_SECRET:-development-only-change-me}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@threatguard.local}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-ChangeMe123!}
+    volumes:
+      - threatguard_data:/app/data
+      - threatguard_models:/app/models
+      - threatguard_reports:/app/reports
+    ports:
+      - "8501:8501"
+    depends_on:
+      api:
+        condition: service_healthy
+
+volumes:
+  threatguard_data:
+  threatguard_models:
+  threatguard_reports:
