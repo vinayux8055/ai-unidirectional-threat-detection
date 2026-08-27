@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ThreatGuard UniFlow AI
 
 **Final-year project:** AI-Based Detection of Cyber Threats in Unidirectional IP Traffic
@@ -188,3 +189,6 @@ This version analyzes flow metadata and does not inspect payloads, block traffic
 
 See `docs/PROJECT_GUIDE.md` and `docs/SRS_TRACEABILITY.md` before preparing the final report and viva.
 
+=======
+# ai-unidirectional-threat-detection
+>>>>>>> origin/main
