@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # ThreatGuard UniFlow AI
 
 **Final-year project:** AI-Based Detection of Cyber Threats in Unidirectional IP Traffic
@@ -191,4 +191,4 @@ See `docs/PROJECT_GUIDE.md` and `docs/SRS_TRACEABILITY.md` before preparing the 
 
 =======
 # ai-unidirectional-threat-detection
->>>>>>> origin/main
+
